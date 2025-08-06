@@ -1,0 +1,168 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    max-height: 800px;
+    max-width: 1280px;
+    min-height: 600px;
+    min-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .border {
+    height: 290px;
+    width: 290px;
+    background: transparent;
+    border-radius: 10px;
+    transition: border 1s;
+    position: relative;
+  }
+  
+  .card {
+    height: 385px;
+    width: 300px;
+    background: #808080;
+    border-radius: 10px;
+    transition: background 0.8s;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 70px 63px -60px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  .card0 {
+    background: url("my2.jpg") center center no-repeat;
+    background-size: 300px;
+  }
+  .card0:hover {
+    background: url("my2.jpg")  center no-repeat;
+    background-size: 600px;
+  }
+  .card0:hover h2 {
+    opacity: 0.85;
+  }
+  .card0:hover .fa {
+    opacity: 1;
+  }
+  .card1 {
+    background: url("h.jpg") center center no-repeat;
+    background-size: 300px;
+  }
+  .card1:hover {
+    background: url("h.jpg") center no-repeat;
+    background-size: 600px;
+  }
+  .card1:hover h2 {
+    opacity: 0.85;
+  }
+  .card1:hover .fa {
+    opacity: 1;
+  }
+  .card2 {
+    background: url("sh2.jpg") center center no-repeat;
+    background-size: 300px;
+  }
+  .card2:hover {
+    background: url("sh2.jpg") center no-repeat;
+    background-size: 600px;
+  }
+  .card2:hover h2 {
+    opacity: 0.85;
+  }
+  .card2:hover .fa {
+    opacity: 1;
+  }
+  
+  h2 {
+    font-family:'Courier New', Courier, monospace;
+    color: #fff;
+    margin: 20px;
+    margin-top: 300px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+    text-shadow: 1px 1px 10px rgb(91, 228, 255), 0 0 40px rgb(70, 233, 255), 0 0 10px rgb(98, 217, 241);;
+  }
+  .fa {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  .icons {
+    position: absolute;
+    fill: #fff;
+    color: #fff;
+    height: 130px;
+    top: 226px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+body
+{
+    background-color: #000;
+} 
+button
+{
+    color:black;
+    position: absolute;
+    background-color: #7df14f;
+    font-size: 20px;
+    height: 50px;
+    width: 100px;
+    border-color: #000000;
+    border-radius: 10px;
+    border-width: 3px;
+    margin-top: 5%;
+    font-style:bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    margin-left: 8%;
+    cursor: pointer;
+    margin-bottom: 10%;
+    text-shadow: 1px 1px 10px rgb(61, 205, 0), 0 0 40px rgb(136, 237, 105), 0 0 10px rgb(224, 225, 224);;
+}
+button:hover {
+  transform:scale(1.2);
+  transition: all 0.5s ease;
+}
+p
+{
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    margin-top:5%;
+    color: white;
+    margin-left: 20%;
+    text-shadow: 1px 1px 10px rgb(91, 228, 255), 0 0 40px rgb(70, 233, 255), 0 0 10px rgb(98, 217, 241);;
+}
+p:hover {
+  transform:scale(1.1);
+  transition: all 0.5s ease;
+}
+.lowerpara
+{
+    font-size: 18px;
+    font-style: bold;
+    font-weight: 400;
+    color:white;
+    margin-top: 35%;
+    margin-right:9%;
+    margin-left: 10.5%;
+    text-shadow: 1px 1px 10px rgb(91, 228, 255), 0 0 40px rgb(70, 233, 255), 0 0 10px rgb(98, 217, 241);;
+}
+#foot
+{
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  position: absolute;
+  margin-top: 47%;
+  margin-right: 20%;
+  text-shadow: 1px 1px 10px rgb(91, 228, 255), 0 0 40px rgb(70, 233, 255), 0 0 10px rgb(98, 217, 241);;
+  color:white;
+}

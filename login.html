@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="logo.png" type="image/icon type">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Ring loader styles */
+        .ring-loader {
+            display: none; /* Hidden by default */
+            width: 30px;
+            height: 30px;
+            margin: 20px auto;
+            border: 8px solid rgba(255, 255, 255, 0.3); /* Light outer border */
+            border-top: 8px solid #31de82; /* Green top border for the spinning effect */
+            border-radius: 50%; /* Make it circular */
+            animation: spin 2.5s linear infinite; /* 2-3 rotations in 2.5s */
+        }
+
+        /* Loader spin animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error message style */
+        .error-message {
+            color: red;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 800;
+            display: none; /* Hidden by default */
+            margin-bottom: 5px;
+        }
+
+        /* Access granted message style */
+        .access-message {
+            color: rgba(93, 176, 10, 0.593);
+            font-size: 16px;
+            text-align: center;
+            font-weight: 800;
+            display: none; /* Hidden by default */
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        const predefinedKey = "admin"; // Replace "admin" with your actual key
+
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const loader = document.getElementById('ring-loader');
+            const errorMessage = document.getElementById('error-message');
+            const accessMessage = document.getElementById('access-message');
+
+            errorMessage.style.display = "none"; // Hide error messages
+            accessMessage.style.display = "none"; // Hide access messages
+
+            loader.style.display = "block"; // Show loader
+
+            setTimeout(() => {
+                const key = document.getElementById('password').value;
+
+                if (key === predefinedKey) {
+                    loader.style.display = "none"; // Hide loader
+                    accessMessage.innerText = "**Access Granted**";
+                    accessMessage.style.display = "block";
+
+                    // Use session storage to indicate the user is logged in
+                    sessionStorage.setItem("isLoggedIn", "true");
+
+                    // Redirect to the UI page after granting access
+                    setTimeout(() => {
+                        window.location.href = "UI1.html";
+                    }, 2000);
+                } else {
+                    loader.style.display = "none"; // Hide loader
+                    errorMessage.innerText = "Invalid Key. Please try again.";
+                    errorMessage.style.display = "block";
+
+                    setTimeout(() => {
+                        errorMessage.style.display = "none";
+                    }, 2000);
+                }
+            }, 3000);
+        }
+
+        // Function to check authentication and prevent access to the login page when logged in
+        function checkAuthentication() {
+            const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+            if (isLoggedIn === "true") {
+                window.location.href = "UI1.html"; // Redirect to the main UI page
+            }
+        }
+
+        // Prevent back navigation to this page
+        function disableBackNavigation() {
+            history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                history.pushState(null, null, window.location.href);
+            };
+        }
+
+        // Run on page load
+        window.onload = function () {
+            checkAuthentication();
+            disableBackNavigation();
+        };
+
+        // Then refresh again after 1 second
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top"><p id="top">P.R.M</p></div>
+        <div class="center">
+            <img src="logo.png" alt="Logo">
+            <!-- Ring loader added here -->
+            <div id="ring-loader" class="ring-loader"></div>
+
+            <!-- Error message container -->
+            <div id="error-message" class="error-message"></div>
+
+            <!-- Access granted message container -->
+            <div id="access-message" class="access-message"></div>
+
+            <form id="loginForm" onsubmit="handleSubmit(event)">
+                <input type="password" id="password" placeholder="Enter Key" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</body>
+
+</html>

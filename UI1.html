@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="logo.png" type="image/icon type">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh">
+    <title>Main</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Disable back navigation
+        function disableBackNavigation() {
+            history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                history.pushState(null, null, window.location.href);
+            };
+        }
+    
+        // Check if the user is logged in
+        function checkAuthentication() {
+            const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+            if (isLoggedIn !== "true") {
+                // If not logged in, redirect to login page
+                window.location.href = "login.html";
+            }
+        }
+    
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem("isLoggedIn"); // Clear session storage
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    
+        // Run checks when the page loads
+        window.onload = function () {
+            checkAuthentication();
+            disableBackNavigation();
+        };
+    
+        // Function to run the batch file and redirect
+        async function runBatchFile() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/run-batch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.ok) {
+                    // Redirect to Output.html without showing any message
+                    window.location.href = "../ProjectUI/Output.html";
+                } else {
+                    // If you need to handle errors silently, you can just log them (no alerts)
+                    console.error("Error executing batch file");
+                }
+            } catch (err) {
+                // If any unexpected error occurs, you can log it
+                console.error("An unexpected error occurred: " + err.message);
+            }
+        }
+//--------->>------------>>------------------------>>------------------------>>
+        async function runBatchFile1() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/run-batch-2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.ok) {
+                    // Redirect to Output.html without showing any message
+                    alert("**[ Model Training is Executed Successfully ]**");
+
+                } else {
+                    // If you need to handle errors silently, you can just log them (no alerts)
+                    console.error("Error executing batch file");
+                }
+            } catch (err) {
+                // If any unexpected error occurs, you can log it
+                console.error("An unexpected error occurred: " + err.message);
+            }
+        }
+    </script>
+    
+</head>
+
+<body>
+    <div class="tophead">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <div class="background-text"> The key to artificial intelligence has always been the representation.</div>
+    <!-- Logout button -->
+    <button onclick="logout()">Log Out</button>
+    <button class="btn2" onclick="runBatchFile1()">Re-Train</button>
+    <div class="container">
+        <!-- Run Batch File -->
+        <div class="panel">
+            <a href="javascript:void(0)" class="ring" onclick="runBatchFile()">
+                <div class="card card1"></div>
+                <div class="border">
+                    <p class="title">Run</p>
+                    <div class="slide">
+                        <h6 class="para">See new A.I Generated Projects</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- About Us -->
+        <div class="panel">
+            <a href="aboutus.html" class="ring">
+                <div class="card card2"></div>
+                <div class="border">
+                    <p class="title">About us</p>
+                    <div class="slide">
+                        <h6 class="para">Members of our team</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Add Project -->
+        <div class="panel">
+            <a href="https://forms.gle/CUHChL1P7uo3xikbA" target="_blank" class="ring">
+                <div class="card card3"></div>
+                <div class="border">
+                    <p class="title">Add Project</p>
+                    <div class="slide">
+                        <h6 class="para">If you have any idea of a project please let us know</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+     <p id="caution"><br>&nbsp;* Do not close the server file before<br>&nbsp;&nbsp;Executing Re-Train or Run Process.</p>
+    <!-- Footer -->
+    <p id="foot">&copy; 2024 PPM 5 HASP. All Rights Reserved.</p>
+</body>
+
+</html>
